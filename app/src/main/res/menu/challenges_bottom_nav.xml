@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/completed_challenges_navigation"
+        android:contentDescription="@string/completed_challenges"
+        android:icon="?android:attr/textSelectHandleLeft"
+        android:title="@string/completed_challenges" />
+    <item
+        android:id="@+id/authored_challenges_navigation"
+        android:contentDescription="@string/authored_challenges"
+        android:icon="?android:attr/textSelectHandleRight"
+        android:title="@string/authored_challenges" />
+</menu>

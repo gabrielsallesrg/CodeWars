@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CodeWars</string>
+    <string name="completed_challenges">Completed Challenges</string>
+    <string name="authored_challenges">Authored Challenges</string>
 </resources>
