@@ -2,4 +2,9 @@
     <string name="app_name">CodeWars</string>
     <string name="completed_challenges">Completed Challenges</string>
     <string name="authored_challenges">Authored Challenges</string>
+    <string name="name">Name:</string>
+    <string name="rank">Rank:</string>
+    <string name="language">Language:</string>
+    <string name="points">Points:</string>
+    <string name="player_name">Player name</string>
 </resources>

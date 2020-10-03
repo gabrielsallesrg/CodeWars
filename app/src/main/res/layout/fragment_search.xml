@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SearchFragment">
+    tools:context=".ui.fragments.search.SearchFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchTextInputLayout"
@@ -20,7 +20,7 @@
             android:id="@+id/searchTextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/player_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -31,22 +31,163 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/resultsRecyclerView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/playerDetailsCardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:elevation="24dp"
+        app:cardCornerRadius="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last5RecyclerView" />
+        app:layout_constraintTop_toBottomOf="@id/last5RecyclerView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/nameBackgroundView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/lightGray"
+                app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nameTitleTextView" />
+
+            <TextView
+                android:id="@+id/nameTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:paddingVertical="8dp"
+                android:text="@string/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nameValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
+                app:layout_constraintEnd_toStartOf="@id/nextImageView"
+                app:layout_constraintTop_toTopOf="@id/nameTitleTextView"
+                tools:text="Asdrubal" />
+
+            <View
+                android:id="@+id/rankBackgroundView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/lightDarkGray"
+                app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rankTitleTextView" />
+
+            <TextView
+                android:id="@+id/rankTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:text="@string/rank"
+                app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/nameTitleTextView" />
+
+            <TextView
+                android:id="@+id/rankValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
+                app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                app:layout_constraintTop_toTopOf="@id/rankTitleTextView"
+                tools:text="200" />
+
+            <View
+                android:id="@+id/languageBackgroundView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/lightGray"
+                app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/languageTitleTextView" />
+
+            <TextView
+                android:id="@+id/languageTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:text="@string/language"
+                app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/rankTitleTextView" />
+
+            <TextView
+                android:id="@+id/languageValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
+                app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                app:layout_constraintTop_toTopOf="@id/languageTitleTextView"
+                tools:text="latin" />
+
+            <View
+                android:id="@+id/languagePointsBackgroundView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/lightDarkGray"
+                app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView" />
+
+            <TextView
+                android:id="@+id/languagePointsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:text="@string/points"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/languageTitleTextView" />
+
+            <TextView
+                android:id="@+id/languagePointsValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
+                app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView"
+                tools:text="-42" />
+
+            <ImageView
+                android:id="@+id/nextImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_send" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/placeHolderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="next"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
