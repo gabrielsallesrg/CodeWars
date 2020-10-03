@@ -69,9 +69,9 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Hilt ViewModel extension
-    def hilt_jetpack_version = "1.0.0-alpha02"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+    def hilt_jet_pack_version = "1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jet_pack_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_jet_pack_version"
 
     // Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -82,13 +82,17 @@ dependencies {
     def stetho_version = "1.5.1"
     implementation "com.facebook.stetho:stetho-okhttp3:$stetho_version"
 
+    // Timber - Log
+    def timber_version = "4.7.1"
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     // Hilt testing dependencies
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
-    kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+    kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jet_pack_version"
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
