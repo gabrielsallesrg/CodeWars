@@ -31,6 +31,8 @@ abstract class CodeWarsDatabase : RoomDatabase() {
                 context.applicationContext,
                 CodeWarsDatabase::class.java,
                 "CodeWars.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }
