@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gsrg.codewars.R
+import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.databinding.FragmentSearchBinding
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.utils.TAG
+import com.gsrg.codewars.ui.PlayerDataViewModel
 import com.gsrg.codewars.ui.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -22,7 +25,12 @@ class SearchFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel: SearchViewModel by viewModels()
-    private val adapter = SearchHistoryAdapter()
+    private val playerDataViewModel: PlayerDataViewModel by activityViewModels()
+
+    private val adapter = SearchHistoryAdapter(fun(player: Player) {
+        playerDataViewModel.playerUsername = player.playerUserName
+        navigateToNextScreen()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +54,7 @@ class SearchFragment : BaseFragment() {
     private fun setListeners() {
         binding.playerDetailsCardView.setOnClickListener {
             searchViewModel.saveSearchedName()
-            findNavController().navigate(R.id.action_searchFragment_to_challengesFragment)
+            navigateToNextScreen()
         }
         binding.searchTextInputLayout.setEndIconOnClickListener {
             binding.searchTextInputEditText.text.toString().let {
@@ -64,6 +72,7 @@ class SearchFragment : BaseFragment() {
             when (val result = it.getContentIfNotHandled()) {
                 is Result.Success -> {
                     hideLoading()
+                    playerDataViewModel.playerUsername = result.data.username
                     Timber.tag(TAG()).d(result.data.toString())
                 }
                 is Result.Error -> {
@@ -80,5 +89,9 @@ class SearchFragment : BaseFragment() {
                 binding.last5RecyclerView.isVisible = true
             }
         })
+    }
+
+    private fun navigateToNextScreen() {
+        findNavController().navigate(R.id.action_searchFragment_to_challengesFragment)
     }
 }

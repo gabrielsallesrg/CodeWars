@@ -11,12 +11,6 @@ import com.gsrg.codewars.database.players.Player
 class SearchHistoryItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var nameTextView: TextView = view.findViewById(R.id.nameTextView)
 
-    init {
-        view.setOnClickListener {
-            //TODO
-        }
-    }
-
     fun bind(player: Player?) {
         if (player != null) {
             nameTextView.text = player.playerUserName

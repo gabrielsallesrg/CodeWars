@@ -32,7 +32,7 @@ class SearchViewModel
     }
 
     fun saveSearchedName() {
-        val player = playerViewLiveData.value?.let { Player(playerUserName = it.usableName(), date = System.currentTimeMillis()) }
+        val player = playerViewLiveData.value?.let { Player(playerUserName = it.username, date = System.currentTimeMillis()) }
         if (player != null) {
             viewModelScope.launch {
                 database.playersDao().insert(player)

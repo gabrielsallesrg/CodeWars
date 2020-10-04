@@ -7,13 +7,17 @@ import com.gsrg.codewars.database.players.Player
 
 private const val HEADER_POSITION = 0
 
-class SearchHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchHistoryAdapter(private val itemClickAction: (Player) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var dataList: MutableList<Player> = mutableListOf()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position > HEADER_POSITION) {
-            (holder as SearchHistoryItemViewHolder).bind(dataList[position - 1])
+            (holder as SearchHistoryItemViewHolder).apply {
+                val player = dataList[position - 1]
+                bind(player)
+                itemView.setOnClickListener { itemClickAction.invoke(player) }
+            }
         }
     }
 
