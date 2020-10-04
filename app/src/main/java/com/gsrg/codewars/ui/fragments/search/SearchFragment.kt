@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gsrg.codewars.R
 import com.gsrg.codewars.databinding.FragmentSearchBinding
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.utils.TAG
+import com.gsrg.codewars.ui.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel: SearchViewModel by viewModels()
@@ -52,15 +52,15 @@ class SearchFragment : Fragment() {
         searchViewModel.playerLiveData.observe(viewLifecycleOwner, {
             when (val result = it.getContentIfNotHandled()) {
                 is Result.Success -> {
+                    hideLoading()
                     Timber.tag(TAG()).d(result.data.toString())
                 }
                 is Result.Error -> {
+                    hideLoading()
                     Timber.tag(TAG()).d(result.message)
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                 }
-                is Result.Loading -> {
-                    Timber.tag(TAG()).d("Loading")
-                }
+                is Result.Loading -> showLoading()
             }
         })
     }
