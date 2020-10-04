@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.gsrg.codewars.R
 import com.gsrg.codewars.databinding.FragmentSearchBinding
 import com.gsrg.codewars.domain.api.Result
-import com.gsrg.codewars.domain.model.PlayerResponse
 import com.gsrg.codewars.domain.utils.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -28,13 +26,15 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.searchViewModel = searchViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         setListeners()
         setObservers()
         return binding.root
     }
 
     private fun setListeners() {
-        binding.placeHolderButton.setOnClickListener {
+        binding.playerDetailsCardView.setOnClickListener {
             findNavController().navigate(R.id.action_searchFragment_to_challengesFragment)
         }
         binding.searchTextInputLayout.setEndIconOnClickListener {
@@ -42,22 +42,17 @@ class SearchFragment : Fragment() {
                 if (it.isNotBlank()) {
                     searchViewModel.searchForUserByName(it)
                 } else {
-                    Toast.makeText(requireContext(), "Invalid player name", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireContext(), "Invalid player name", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
     private fun setObservers() {
-        searchViewModel.playerLiveData.observe(viewLifecycleOwner, Observer {
+        searchViewModel.playerLiveData.observe(viewLifecycleOwner, {
             when (val result = it.getContentIfNotHandled()) {
                 is Result.Success -> {
                     Timber.tag(TAG()).d(result.data.toString())
-                    result.data.let { player: PlayerResponse ->
-                        binding.nameValueTextView.text =
-                            if (player.name.isNullOrBlank()) player.username else player.name
-                    }
                 }
                 is Result.Error -> {
                     Timber.tag(TAG()).d(result.message)
