@@ -1,6 +1,7 @@
 package com.gsrg.codewars.domain.di
 
 import android.content.Context
+import com.gsrg.codewars.database.CodeWarsDatabase
 import com.gsrg.codewars.domain.BuildConfig
 import com.gsrg.codewars.domain.MockInterceptor
 import com.gsrg.codewars.domain.api.CodeWarsApiService
@@ -45,5 +46,11 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CodeWarsApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCodeWarsDatabase(@ApplicationContext applicationContext: Context): CodeWarsDatabase {
+        return CodeWarsDatabase.getInstance(applicationContext)
     }
 }
