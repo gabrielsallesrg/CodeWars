@@ -38,7 +38,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
+            tools:itemCount="5"
+            tools:listitem="@layout/search_history_item" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/playerDetailsCardView"

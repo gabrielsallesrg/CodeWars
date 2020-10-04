@@ -20,6 +20,7 @@ class SearchFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel: SearchViewModel by viewModels()
+    private val adapter = SearchHistoryAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,11 +31,17 @@ class SearchFragment : BaseFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         setListeners()
         setObservers()
+        initAdapter()
         return binding.root
+    }
+
+    private fun initAdapter() {
+        binding.last5RecyclerView.adapter = adapter
     }
 
     private fun setListeners() {
         binding.playerDetailsCardView.setOnClickListener {
+            searchViewModel.saveSearchedName()
             findNavController().navigate(R.id.action_searchFragment_to_challengesFragment)
         }
         binding.searchTextInputLayout.setEndIconOnClickListener {

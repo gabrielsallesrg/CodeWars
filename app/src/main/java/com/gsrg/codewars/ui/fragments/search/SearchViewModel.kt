@@ -5,6 +5,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.data.IPlayerRepository
 import com.gsrg.codewars.domain.model.PlayerResponse
@@ -14,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel
 @ViewModelInject constructor(
-    private val playerRepository: IPlayerRepository
+    private val playerRepository: IPlayerRepository,
+    private val database: CodeWarsDatabase
 ) : ViewModel() {
 
     private val _playerLiveData = MutableLiveData<Event<Result<PlayerResponse>>>()
@@ -25,6 +28,16 @@ class SearchViewModel
 
     init {
         resultsVisibilityLiveData.value = View.GONE
+    }
+
+    fun saveSearchedName() {
+        val player = playerViewLiveData.value?.let { Player(playerUserName = it.usableName(), date = System.currentTimeMillis()) }
+        if (player != null) {
+            viewModelScope.launch {
+                database.playersDao().insert(player)
+                database.playersDao().keepLast5Players()
+            }
+        }
     }
 
     fun searchForUserByName(name: String) {

@@ -80,6 +80,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    // Paging
+    def paging_version = '3.0.0-alpha06'
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
     //Stetho
     def stetho_version = "1.5.1"
     implementation "com.facebook.stetho:stetho-okhttp3:$stetho_version"
