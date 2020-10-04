@@ -12,7 +12,7 @@ interface PlayersDao {
     suspend fun insert(player: Player)
 
     @Query("SELECT * FROM playerTable")
-    fun selectAllPlayers(): List<Player>?
+    suspend fun selectAllPlayers(): List<Player>?
 
     @Query("DELETE FROM playerTable WHERE date NOT IN (SELECT date FROM playerTable ORDER BY date DESC LIMIT 5)")
     suspend fun keepLast5Players()

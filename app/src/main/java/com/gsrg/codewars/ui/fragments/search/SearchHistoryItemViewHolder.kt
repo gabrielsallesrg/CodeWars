@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gsrg.codewars.R
 import com.gsrg.codewars.database.players.Player
 
-class SearchHistoryItemViewHolder(
-    view: View
-) : RecyclerView.ViewHolder(view) {
-    private val nameTextView: TextView = view.findViewById(R.id.nameTextView)
+class SearchHistoryItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private var nameTextView: TextView = view.findViewById(R.id.nameTextView)
 
     init {
         view.setOnClickListener {

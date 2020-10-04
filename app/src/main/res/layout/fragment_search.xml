@@ -10,194 +10,205 @@
             type="com.gsrg.codewars.ui.fragments.search.SearchViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.fragments.search.SearchFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchTextInputLayout"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
-            app:endIconMode="custom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:context=".ui.fragments.search.SearchFragment">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchTextInputEditText"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchTextInputLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/player_name" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
+                app:endIconMode="custom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/last5RecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
-            tools:itemCount="5"
-            tools:listitem="@layout/search_history_item" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/playerDetailsCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:visibility="@{searchViewModel.resultsVisibilityLiveData}"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/last5RecyclerView"
-            app:layout_constraintVertical_bias="0.0"
-            tools:visibility="visible">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/nameBackgroundView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/lightDarkGray"
-                    app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/nameTitleTextView" />
-
-                <TextView
-                    android:id="@+id/nameTitleTextView"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchTextInputEditText"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:paddingVertical="8dp"
-                    android:text="@string/name"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:hint="@string/player_name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/nameValueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:text="@{searchViewModel.playerViewLiveData.usableName}"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
-                    app:layout_constraintEnd_toStartOf="@id/nextImageView"
-                    app:layout_constraintTop_toTopOf="@id/nameTitleTextView"
-                    tools:text="Asdrubal" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/last5RecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="24dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
+                tools:itemCount="5"
+                tools:listitem="@layout/search_history_item"
+                tools:visibility="visible" />
 
-                <View
-                    android:id="@+id/rankBackgroundView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/lightGray"
-                    app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/rankTitleTextView" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/playerDetailsCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="48dp"
+                android:visibility="@{searchViewModel.resultsVisibilityLiveData}"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/last5RecyclerView"
+                app:layout_constraintVertical_bias="0.0"
+                tools:visibility="visible">
 
-                <TextView
-                    android:id="@+id/rankTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:text="@string/rank"
-                    app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
-                    app:layout_constraintTop_toBottomOf="@id/nameTitleTextView" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/rankValueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(searchViewModel.playerViewLiveData.overallRank())}"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
-                    app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
-                    app:layout_constraintTop_toTopOf="@id/rankTitleTextView"
-                    tools:text="200" />
+                    <View
+                        android:id="@+id/nameBackgroundView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/lightDarkGray"
+                        app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/nameTitleTextView" />
 
-                <View
-                    android:id="@+id/languageBackgroundView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/lightDarkGray"
-                    app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/languageTitleTextView" />
+                    <TextView
+                        android:id="@+id/nameTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:paddingVertical="8dp"
+                        android:text="@string/name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/languageTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:text="@string/language"
-                    app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
-                    app:layout_constraintTop_toBottomOf="@id/rankTitleTextView" />
+                    <TextView
+                        android:id="@+id/nameValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="@{searchViewModel.playerViewLiveData.usableName}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/nameTitleTextView"
+                        app:layout_constraintEnd_toStartOf="@id/nextImageView"
+                        app:layout_constraintTop_toTopOf="@id/nameTitleTextView"
+                        tools:text="Asdrubal" />
 
-                <TextView
-                    android:id="@+id/languageValueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{searchViewModel.playerViewLiveData.bestLanguage()}"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
-                    app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
-                    app:layout_constraintTop_toTopOf="@id/languageTitleTextView"
-                    tools:text="latin" />
+                    <View
+                        android:id="@+id/rankBackgroundView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/lightGray"
+                        app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/rankTitleTextView" />
 
-                <View
-                    android:id="@+id/languagePointsBackgroundView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/lightGray"
-                    app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView" />
+                    <TextView
+                        android:id="@+id/rankTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/rank"
+                        app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@id/nameTitleTextView" />
 
-                <TextView
-                    android:id="@+id/languagePointsTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:text="@string/points"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
-                    app:layout_constraintTop_toBottomOf="@id/languageTitleTextView" />
+                    <TextView
+                        android:id="@+id/rankValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(searchViewModel.playerViewLiveData.overallRank())}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/rankTitleTextView"
+                        app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                        app:layout_constraintTop_toTopOf="@id/rankTitleTextView"
+                        tools:text="200" />
 
-                <TextView
-                    android:id="@+id/languagePointsValueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(searchViewModel.playerViewLiveData.pointsForBestLanguage())}"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
-                    app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
-                    app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView"
-                    tools:text="-42" />
+                    <View
+                        android:id="@+id/languageBackgroundView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/lightDarkGray"
+                        app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/languageTitleTextView" />
 
-                <ImageView
-                    android:id="@+id/nextImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/next_button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_send" />
+                    <TextView
+                        android:id="@+id/languageTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/language"
+                        app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@id/rankTitleTextView" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/languageValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{searchViewModel.playerViewLiveData.bestLanguage()}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/languageTitleTextView"
+                        app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                        app:layout_constraintTop_toTopOf="@id/languageTitleTextView"
+                        tools:text="latin" />
 
-        </androidx.cardview.widget.CardView>
+                    <View
+                        android:id="@+id/languagePointsBackgroundView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/lightGray"
+                        app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/languagePointsTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/points"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/nameTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@id/languageTitleTextView" />
+
+                    <TextView
+                        android:id="@+id/languagePointsValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(searchViewModel.playerViewLiveData.pointsForBestLanguage())}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/languagePointsTitleTextView"
+                        app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+                        app:layout_constraintTop_toTopOf="@id/languagePointsTitleTextView"
+                        tools:text="-42" />
+
+                    <ImageView
+                        android:id="@+id/nextImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/next_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@android:drawable/ic_menu_send" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

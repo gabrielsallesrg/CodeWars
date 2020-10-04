@@ -8,4 +8,5 @@
     <string name="points">Points:</string>
     <string name="player_name">Player name</string>
     <string name="next_button">Next button</string>
+    <string name="last_5_searches">LAST 5 SEARCHES</string>
 </resources>

@@ -1,24 +1,42 @@
 package com.gsrg.codewars.ui.fragments.search
 
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.gsrg.codewars.R
 import com.gsrg.codewars.database.players.Player
 
-class SearchHistoryAdapter : PagingDataAdapter<Player, SearchHistoryItemViewHolder>(PLAYER_COMPARATOR) {
+private const val HEADER_POSITION = 0
 
-    override fun onBindViewHolder(holder: SearchHistoryItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+class SearchHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var dataList: MutableList<Player> = mutableListOf()
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (position > HEADER_POSITION) {
+            (holder as SearchHistoryItemViewHolder).bind(dataList[position - 1])
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryItemViewHolder {
-        return SearchHistoryItemViewHolder.create(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.search_history_header_item -> SearchHistoryHeaderItemViewHolder.create(parent)
+            else -> SearchHistoryItemViewHolder.create(parent)
+        }
     }
 
-    companion object {
-        private val PLAYER_COMPARATOR = object : DiffUtil.ItemCallback<Player>() {
-            override fun areItemsTheSame(oldItem: Player, newItem: Player) = oldItem.playerUserName == newItem.playerUserName
-            override fun areContentsTheSame(oldItem: Player, newItem: Player) = oldItem == newItem
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            HEADER_POSITION -> R.layout.search_history_header_item
+            else -> R.layout.search_history_item
+        }
+    }
+
+    override fun getItemCount(): Int = if (dataList.isEmpty()) 0 else dataList.count() + 1
+
+    fun submitData(playersList: List<Player>) {
+        if (playersList != dataList) {
+            dataList = playersList.toMutableList()
+            notifyDataSetChanged()
         }
     }
 }

@@ -25,6 +25,7 @@ class SearchViewModel
 
     val playerViewLiveData = MutableLiveData<PlayerResponse>()
     val resultsVisibilityLiveData = MutableLiveData<Int>()
+    val last5playersLiveData = MutableLiveData<List<Player>>()
 
     init {
         resultsVisibilityLiveData.value = View.GONE
@@ -36,6 +37,15 @@ class SearchViewModel
             viewModelScope.launch {
                 database.playersDao().insert(player)
                 database.playersDao().keepLast5Players()
+            }
+        }
+    }
+
+    fun retrieveSavedSearchedNames() {
+        viewModelScope.launch {
+            val listOfPlayers: List<Player>? = database.playersDao().selectAllPlayers()
+            if (listOfPlayers != null) {
+                last5playersLiveData.value = listOfPlayers
             }
         }
     }
