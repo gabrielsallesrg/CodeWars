@@ -9,7 +9,7 @@ class CompletedChallengesAdapter(private val itemClickAction: (ChallengeComplete
 
     override fun onBindViewHolder(holder: ChallengeViewHolder, position: Int) {
         getItem(position)?.let { challenge: ChallengeCompleted ->
-            holder.bind(challenge.challengeName)
+            holder.bind(challenge.challengeName ?: "Null")
             holder.itemView.setOnClickListener { itemClickAction.invoke(challenge) }
         }
     }

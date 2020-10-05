@@ -6,5 +6,5 @@ import androidx.room.Entity
 data class ChallengeCompleted(
     val username: String,
     val challengeId: String,
-    val challengeName: String
+    val challengeName: String?
 )

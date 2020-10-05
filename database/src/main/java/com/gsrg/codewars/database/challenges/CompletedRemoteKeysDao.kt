@@ -16,4 +16,7 @@ interface CompletedRemoteKeysDao {
 
     @Query("DELETE FROM completedRemoteKeysTable WHERE username = :username")
     suspend fun clearRemoteKeysByUsername(username: String)
+
+    @Query("DELETE FROM completedRemoteKeysTable WHERE username NOT IN(SELECT playerUserName FROM playerTable)")
+    suspend fun keepRemoteKeysFromLast5Players()
 }

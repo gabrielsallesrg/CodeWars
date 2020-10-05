@@ -20,4 +20,7 @@ interface ChallengesDAO {
 
     @Query("DELETE FROM challengeCompletedTable WHERE username LIKE :username")
     suspend fun clearCompletedByUsername(username: String)
+
+    @Query("DELETE FROM challengeCompletedTable WHERE username NOT IN(SELECT playerUserName FROM playerTable)")
+    suspend fun keepCompletedChallengesFromLast5Players()
 }
