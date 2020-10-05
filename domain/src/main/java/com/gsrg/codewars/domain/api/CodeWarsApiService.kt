@@ -1,5 +1,6 @@
 package com.gsrg.codewars.domain.api
 
+import com.gsrg.codewars.domain.model.ChallengeDetailsResponse
 import com.gsrg.codewars.domain.model.CompletedChallengesResponse
 import com.gsrg.codewars.domain.model.PlayerResponse
 import retrofit2.Response
@@ -28,4 +29,12 @@ interface CodeWarsApiService {
         @Path("username") username: String,
         @Query("page") page: Int
     ): CompletedChallengesResponse
+
+    /**
+     * Request challenge details by challengeId
+     */
+    @GET("code-challenges/{challengeId}")
+    suspend fun requestChallengeDetails(
+        @Path("challengeId") challengeId: String
+    ): Response<ChallengeDetailsResponse>
 }
