@@ -1,7 +1,7 @@
 package com.gsrg.codewars.domain.di
 
-import com.gsrg.codewars.domain.data.CompletedChallengesRepository
-import com.gsrg.codewars.domain.data.ICompletedChallengesRepository
+import com.gsrg.codewars.domain.data.completed.CompletedChallengesRepository
+import com.gsrg.codewars.domain.data.completed.ICompletedChallengesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

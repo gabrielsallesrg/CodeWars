@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.database.challenges.ChallengesDAO
+import com.gsrg.codewars.database.challenges.CompletedRemoteKeys
+import com.gsrg.codewars.database.challenges.CompletedRemoteKeysDao
 import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.database.players.PlayersDao
 
 @Database(
-    entities = [Player::class, ChallengeCompleted::class],
+    entities = [Player::class, ChallengeCompleted::class, CompletedRemoteKeys::class],
     version = 1,
     exportSchema = false
 )
@@ -18,6 +20,7 @@ abstract class CodeWarsDatabase : RoomDatabase() {
 
     abstract fun playersDao(): PlayersDao
     abstract fun challengesDao(): ChallengesDAO
+    abstract fun completedRemoteKeysDao(): CompletedRemoteKeysDao
 
     companion object {
 

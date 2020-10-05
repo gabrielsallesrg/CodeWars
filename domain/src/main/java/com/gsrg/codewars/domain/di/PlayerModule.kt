@@ -1,7 +1,7 @@
 package com.gsrg.codewars.domain.di
 
-import com.gsrg.codewars.domain.data.IPlayerRepository
-import com.gsrg.codewars.domain.data.PlayerRepository
+import com.gsrg.codewars.domain.data.player.IPlayerRepository
+import com.gsrg.codewars.domain.data.player.PlayerRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -13,20 +13,11 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="24dp"
         android:paddingVertical="8dp"
-        app:layout_constraintBottom_toTopOf="@id/simpleSeparator"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/nextImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name" />
-
-    <View
-        android:id="@+id/simpleSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/nextImageView"

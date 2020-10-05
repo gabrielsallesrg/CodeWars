@@ -1,7 +1,8 @@
-package com.gsrg.codewars.domain.data
+package com.gsrg.codewars.domain.data.player
 
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.api.Result
+import com.gsrg.codewars.domain.data.BaseRepository
 import com.gsrg.codewars.domain.model.PlayerResponse
 import com.gsrg.codewars.domain.utils.TAG
 import kotlinx.coroutines.flow.Flow
