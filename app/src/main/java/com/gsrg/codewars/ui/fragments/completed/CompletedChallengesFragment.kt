@@ -13,7 +13,6 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gsrg.codewars.R
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.databinding.FragmentCompletedChallengesBinding
 import com.gsrg.codewars.ui.PlayerDataViewModel
@@ -32,8 +31,8 @@ class CompletedChallengesFragment : BaseFragment() {
     private var searchJob: Job? = null
 
     private val adapter = CompletedChallengesAdapter(fun(challenge: ChallengeCompleted) {
-        //TODO navigate to the next screen taking the challenge ID
-        findNavController().navigate(R.id.action_completedChallengesFragment_to_challengeDetailsFragment)
+        val action = CompletedChallengesFragmentDirections.actionCompletedChallengesFragmentToChallengeDetailsFragment(challengeId = challenge.challengeId)
+        findNavController().navigate(action)
     })
 
     override fun onCreateView(
