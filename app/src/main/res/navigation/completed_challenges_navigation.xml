@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/challengeDetailsFragment"
-        android:name="com.gsrg.codewars.ui.fragments.ChallengeDetailsFragment"
+        android:name="com.gsrg.codewars.ui.fragments.challengedetails.ChallengeDetailsFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_challenge_details" />
 </navigation>
