@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.gsrg.codewars.database.CodeWarsDatabase
 import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.domain.api.Result
-import com.gsrg.codewars.domain.data.IPlayerRepository
+import com.gsrg.codewars.domain.data.player.IPlayerRepository
 import com.gsrg.codewars.domain.model.PlayerResponse
 import com.gsrg.codewars.ui.Event
 import kotlinx.coroutines.flow.collect

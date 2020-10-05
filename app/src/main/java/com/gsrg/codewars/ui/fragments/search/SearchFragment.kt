@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gsrg.codewars.R
 import com.gsrg.codewars.database.players.Player
@@ -46,8 +46,11 @@ class SearchFragment : BaseFragment() {
     }
 
     private fun setRecyclerView() {
-        binding.last5RecyclerView.adapter = adapter
-        binding.last5RecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.last5RecyclerView.let {
+            it.adapter = adapter
+            it.layoutManager = LinearLayoutManager(requireContext())
+            it.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        }
         searchViewModel.retrieveSavedSearchedNames()
     }
 
@@ -61,7 +64,7 @@ class SearchFragment : BaseFragment() {
                 if (it.isNotBlank()) {
                     searchViewModel.searchForUserByName(it)
                 } else {
-                    Toast.makeText(requireContext(), "Invalid player name", Toast.LENGTH_SHORT).show()
+                    showMessage(binding.root, "Invalid player name")
                 }
             }
         }
@@ -78,7 +81,7 @@ class SearchFragment : BaseFragment() {
                 is Result.Error -> {
                     hideLoading()
                     Timber.tag(TAG()).d(result.message)
-                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    showMessage(binding.root, result.message)
                 }
                 is Result.Loading -> showLoading()
             }
