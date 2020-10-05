@@ -4,17 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.gsrg.codewars.database.challenges.ChallengeCompleted
+import com.gsrg.codewars.database.challenges.ChallengesDAO
 import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.database.players.PlayersDao
 
 @Database(
-    entities = [Player::class],
+    entities = [Player::class, ChallengeCompleted::class],
     version = 1,
     exportSchema = false
 )
 abstract class CodeWarsDatabase : RoomDatabase() {
 
     abstract fun playersDao(): PlayersDao
+    abstract fun challengesDao(): ChallengesDAO
 
     companion object {
 

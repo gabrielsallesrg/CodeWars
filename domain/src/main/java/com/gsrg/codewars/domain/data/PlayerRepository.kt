@@ -1,9 +1,7 @@
 package com.gsrg.codewars.domain.data
 
-import com.google.gson.Gson
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.api.Result
-import com.gsrg.codewars.domain.model.ErrorResponse
 import com.gsrg.codewars.domain.model.PlayerResponse
 import com.gsrg.codewars.domain.utils.TAG
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +12,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class PlayerRepository
-@Inject constructor(private val codeWarsApiService: CodeWarsApiService) : IPlayerRepository {
+@Inject constructor(private val codeWarsApiService: CodeWarsApiService) : BaseRepository(), IPlayerRepository {
 
     override fun getPlayerDetailsByName(name: String): Flow<Result<PlayerResponse>> = flow {
         emit(getPlayerDetailsByNameSuspend(name))
@@ -49,19 +47,4 @@ class PlayerRepository
             Timber.tag(TAG()).e(exception)
             Result.Error(exception, "Something went wrong.")
         }
-
-
-    private fun convertErrorResponseToString(code: Int, errorResponseBody: ResponseBody): String? {
-        val gson = Gson()
-        try {
-            val errorResponse: ErrorResponse? =
-                gson.fromJson(errorResponseBody.charStream(), ErrorResponse::class.java)
-            errorResponse?.reason?.let {
-                return "$code $it"
-            }
-        } catch (exception: Exception) {
-            Timber.tag(TAG()).e(exception)
-        }
-        return null
-    }
 }
