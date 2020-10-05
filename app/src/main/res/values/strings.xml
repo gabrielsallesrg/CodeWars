@@ -9,4 +9,10 @@
     <string name="player_name">Player name</string>
     <string name="next_button">Next button</string>
     <string name="last_5_searches">LAST 5 SEARCHES</string>
+    <string name="slug">Slug</string>
+    <string name="category">Category</string>
+    <string name="languages">Languages</string>
+    <string name="url">URL</string>
+    <string name="creator">Creator</string>
+    <string name="creator_url">Creator URL</string>
 </resources>

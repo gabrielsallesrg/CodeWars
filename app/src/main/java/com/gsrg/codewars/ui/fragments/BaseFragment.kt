@@ -10,7 +10,7 @@ abstract class BaseFragment : Fragment() {
     fun showLoading() = (requireActivity() as MainActivity).showLoading()
     fun hideLoading() = (requireActivity() as MainActivity).hideLoading()
 
-    fun showMessage(view: View, message: String, longDuration: Boolean = true) {
+    fun showMessage(view: View, message: String, longDuration: Boolean = false) {
         val duration = if (longDuration) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
         Toast.makeText(view.context, message, duration).show()
     }

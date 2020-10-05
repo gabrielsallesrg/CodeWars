@@ -10,21 +10,209 @@
             type="com.gsrg.codewars.ui.fragments.challengedetails.ChallengeDetailsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.fragments.challengedetails.ChallengeDetailsFragment">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CHALLENGE DETAILS"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/challengeNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.viewLiveData.name}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Challenge Name" />
+
+            <TextView
+                android:id="@+id/slugTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/slug"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/slugValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/slugValueTextView" />
+
+            <TextView
+                android:id="@+id/slugValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.slug}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/challengeNameTextView"
+                tools:text="Slug name" />
+
+            <TextView
+                android:id="@+id/categoryTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/category"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/categoryValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/categoryValueTextView" />
+
+            <TextView
+                android:id="@+id/categoryValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.category}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/slugValueTextView"
+                tools:text="Category name" />
+
+            <TextView
+                android:id="@+id/languagesTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/languages"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/languagesValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/languagesValueTextView" />
+
+            <TextView
+                android:id="@+id/languagesValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.languages}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/categoryValueTextView"
+                tools:text="Languages names" />
+
+            <TextView
+                android:id="@+id/urlTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/url"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/urlValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/urlValueTextView" />
+
+            <TextView
+                android:id="@+id/urlValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.url}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/languagesValueTextView"
+                tools:text="www.xpto.com" />
+
+            <TextView
+                android:id="@+id/creatorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/creator"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/creatorValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/creatorValueTextView" />
+
+            <TextView
+                android:id="@+id/creatorValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.creatorUsername}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/urlValueTextView"
+                tools:text="Creator Name" />
+
+            <TextView
+                android:id="@+id/creatorUrlTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="end"
+                android:text="@string/creator_url"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/creatorUrlValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/creatorUrlValueTextView" />
+
+            <TextView
+                android:id="@+id/creatorUrlValueTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="@{viewModel.viewLiveData.creatorUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/creatorValueTextView"
+                tools:text="www.xpto.com" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{viewModel.viewLiveData.description}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/slugValueTextView"
+                app:layout_constraintStart_toStartOf="@id/slugTextView"
+                app:layout_constraintTop_toBottomOf="@id/creatorUrlValueTextView"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Description" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
