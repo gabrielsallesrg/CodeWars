@@ -77,7 +77,7 @@ class CompletedChallengesMediator(
                     )
                 }
                 database.completedRemoteKeysDao().insertAll(keys)
-                database.challengesDao().completedByUsername(username)
+                database.challengesDao().insertAllCompleted(challengeList)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
 

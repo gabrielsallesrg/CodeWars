@@ -14,7 +14,7 @@ class CompletedChallengesViewModel
 
     private var challengeListResult: Flow<PagingData<ChallengeCompleted>>? = null
 
-    fun requestChallengeListResult(username: String): Flow<PagingData<ChallengeCompleted>> {
+    fun requestCompletedChallengeListResult(username: String): Flow<PagingData<ChallengeCompleted>> {
         if (challengeListResult != null) {
             return challengeListResult!!
         }

@@ -9,7 +9,7 @@ import com.gsrg.codewars.R
 
 class ChallengeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val challengeNameTextView: TextView = view.findViewById(R.id.nameTextView)
+    private val challengeNameTextView: TextView = view.findViewById(R.id.challengeNameTextView)
 
     fun bind(challengeName: String) {
         challengeNameTextView.text = challengeName

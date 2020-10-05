@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -65,7 +64,7 @@ class SearchFragment : BaseFragment() {
                 if (it.isNotBlank()) {
                     searchViewModel.searchForUserByName(it)
                 } else {
-                    Toast.makeText(requireContext(), "Invalid player name", Toast.LENGTH_SHORT).show()
+                    showMessage(binding.root, "Invalid player name")
                 }
             }
         }
@@ -82,7 +81,7 @@ class SearchFragment : BaseFragment() {
                 is Result.Error -> {
                     hideLoading()
                     Timber.tag(TAG()).d(result.message)
-                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    showMessage(binding.root, result.message)
                 }
                 is Result.Loading -> showLoading()
             }
