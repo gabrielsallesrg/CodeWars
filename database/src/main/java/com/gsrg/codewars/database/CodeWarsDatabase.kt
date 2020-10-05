@@ -4,15 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.gsrg.codewars.database.challenges.ChallengeCompleted
-import com.gsrg.codewars.database.challenges.ChallengesDAO
-import com.gsrg.codewars.database.challenges.CompletedRemoteKeys
-import com.gsrg.codewars.database.challenges.CompletedRemoteKeysDao
+import com.gsrg.codewars.database.challenges.*
 import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.database.players.PlayersDao
 
 @Database(
-    entities = [Player::class, ChallengeCompleted::class, CompletedRemoteKeys::class],
+    entities = [
+        Player::class, ChallengeCompleted::class,
+        CompletedRemoteKeys::class, ChallengeDetails::class],
     version = 1,
     exportSchema = false
 )

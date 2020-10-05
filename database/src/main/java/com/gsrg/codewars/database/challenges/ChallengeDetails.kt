@@ -9,7 +9,7 @@ data class ChallengeDetails(
     val name: String?,
     val slug: String?,
     val category: String?,
-    val languages: List<String>?,
+    val languages: String?,
     val url: String?,
     val description: String?,
     val creatorUsername: String?,

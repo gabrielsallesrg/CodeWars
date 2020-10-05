@@ -1,9 +1,9 @@
-package com.gsrg.codewars.domain.data.player
+package com.gsrg.codewars.domain.data.challengedetails
 
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.data.BaseRepository
-import com.gsrg.codewars.domain.model.PlayerResponse
+import com.gsrg.codewars.domain.model.ChallengeDetailsResponse
 import com.gsrg.codewars.domain.utils.TAG
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,13 +11,15 @@ import timber.log.Timber
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class PlayerRepository
-@Inject constructor(private val codeWarsApiService: CodeWarsApiService) : BaseRepository(), IPlayerRepository {
+class ChallengeDetailsRepository
+@Inject constructor(
+    private val codeWarsApiService: CodeWarsApiService
+) : BaseRepository(), IChallengeDetailsRepository {
 
-    override fun getPlayerDetailsByName(name: String): Flow<Result<PlayerResponse>> = flow {
+    override fun getChallengeDetails(challengeId: String): Flow<Result<ChallengeDetailsResponse>> = flow {
         emit(try {
-            codeWarsApiService.searchPlayer(idOrUsername = name).run {
-                Timber.tag(this@PlayerRepository.TAG()).d("%s -> %s", message(), body())
+            codeWarsApiService.requestChallengeDetails(challengeId = challengeId).run {
+                Timber.tag(this@ChallengeDetailsRepository.TAG()).d("%s -> %s", message(), body())
                 if (isSuccessful && body() != null) {
                     Result.Success(data = body()!!)
                 } else {
