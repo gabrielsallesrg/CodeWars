@@ -11,7 +11,6 @@ import com.gsrg.codewars.database.challenges.CompletedRemoteKeys
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import retrofit2.HttpException
 import java.io.IOException
-import java.io.InvalidObjectException
 
 private const val CHALLENGES_STARTING_PAGE = 0
 
@@ -31,7 +30,7 @@ class CompletedChallengesMediator(
             LoadType.PREPEND -> {
                 val remoteKeys = getRemoteKeyForFirstItem(username, state)
                 if (remoteKeys == null) {
-                    throw InvalidObjectException("Remote key and the prevKey should not be null")
+                    return MediatorResult.Success(endOfPaginationReached = false)
                 }
                 // If the previous key is null, then we can't request more data
                 val prevKey = remoteKeys.prevKey
@@ -43,7 +42,7 @@ class CompletedChallengesMediator(
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(username, state)
                 if (remoteKeys?.nextKey == null) {
-                    throw InvalidObjectException("Remote key should not be null for $loadType")
+                    return MediatorResult.Success(endOfPaginationReached = false)
                 }
                 remoteKeys.nextKey!!
             }
