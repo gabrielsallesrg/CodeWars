@@ -23,4 +23,19 @@ interface ChallengesDAO {
 
     @Query("DELETE FROM challengeCompletedTable WHERE username NOT IN(SELECT playerUserName FROM playerTable)")
     suspend fun keepCompletedChallengesFromLast5Players()
+
+    /**
+     * ChallengeDetails.kt
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertChallengeDetails(challengeDetails: ChallengeDetails)
+
+    @Query("SELECT * FROM challengeDetailsTable WHERE playerUsername LIKE :playerUsername AND challengeId LIKE :challengeId")
+    suspend fun requestChallengeDetailsBy(challengeId: String, playerUsername: String): List<ChallengeDetails>
+
+    @Query("DELETE FROM challengeDetailsTable WHERE playerUsername LIKE :playerUsername AND challengeId LIKE :challengeId")
+    suspend fun clearChallengeDetailsBy(challengeId: String, playerUsername: String)
+
+    @Query("DELETE FROM challengeDetailsTable WHERE playerUsername NOT IN(SELECT playerUserName FROM playerTable)")
+    suspend fun keepChallengeDetailsFromLast5Players()
 }
