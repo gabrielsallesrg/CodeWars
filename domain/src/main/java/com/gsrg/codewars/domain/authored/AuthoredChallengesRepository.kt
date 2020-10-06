@@ -22,7 +22,7 @@ class AuthoredChallengesRepository
     override fun getAuthoredChallengeList(username: String): Flow<PagingData<AuthoredChallenge>> {
         Timber.tag(TAG()).d("username: $username")
 
-        val pagingSourceFactory = { database.challengesDao().authoredByUsername(username = username) }
+        val pagingSourceFactory = { database.authoredChallengeDao().authoredByUsername(username = username) }
 
         return Pager(
             config = PagingConfig(

@@ -62,7 +62,7 @@ class CompletedChallengesMediator(
             val endOfPaginationReached = challengeList.isEmpty()
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    database.challengesDao().clearCompletedByUsername(username)
+                    database.challengeCompletedDao().clearCompletedByUsername(username)
                     database.completedRemoteKeysDao().clearRemoteKeysByUsername(username)
                 }
                 val prevKey = if (page == CHALLENGES_STARTING_PAGE) null else page - 1
@@ -76,10 +76,10 @@ class CompletedChallengesMediator(
                     )
                 }
                 database.completedRemoteKeysDao().insertAll(keys)
-                database.challengesDao().insertAllCompleted(challengeList)
+                database.challengeCompletedDao().insertAllCompleted(challengeList)
 
-                database.challengesDao().keepCompletedChallengesFromLast5Players()
-                database.challengesDao().keepChallengeDetailsFromLast5Players()
+                database.challengeCompletedDao().keepCompletedChallengesFromLast5Players()
+                database.challengeDetailsDao().keepChallengeDetailsFromLast5Players()
                 database.completedRemoteKeysDao().keepRemoteKeysFromLast5Players()
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)

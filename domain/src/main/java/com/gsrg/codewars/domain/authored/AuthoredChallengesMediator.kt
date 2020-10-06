@@ -7,6 +7,8 @@ import androidx.paging.RemoteMediator
 import com.gsrg.codewars.database.CodeWarsDatabase
 import com.gsrg.codewars.database.challenges.AuthoredChallenge
 import com.gsrg.codewars.domain.api.CodeWarsApiService
+import retrofit2.HttpException
+import java.io.IOException
 
 @ExperimentalPagingApi
 class AuthoredChallengesMediator(
@@ -15,7 +17,35 @@ class AuthoredChallengesMediator(
     private val database: CodeWarsDatabase
 ) : RemoteMediator<Int, AuthoredChallenge>() {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, AuthoredChallenge>): MediatorResult {
-        //TODO("Not yet implemented")
-        return MediatorResult.Success(endOfPaginationReached = true)
+        when (loadType) {
+            LoadType.REFRESH -> {
+            } //TODO
+            LoadType.PREPEND -> {
+            } //TODO
+            LoadType.APPEND -> {
+            } //TODO
+        }
+        if (loadType == LoadType.REFRESH) {
+            try {
+                val apiResponse = apiService.requestAuthoredChallenges(username)
+                val challengeList: List<AuthoredChallenge> = apiResponse.challenges.map {
+                    AuthoredChallenge(
+                        username = username,
+                        challengeId = it.id,
+                        challengeName = it.name
+                    )
+                }
+                database.authoredChallengeDao().clearAuthoredByUsername(username)
+                database.authoredChallengeDao().insertAllAuthored(challengeList)
+                database.authoredChallengeDao().keepAuthoredChallengesFromLast5Players()
+                return MediatorResult.Success(endOfPaginationReached = true)
+
+            } catch (exception: IOException) {
+                return MediatorResult.Error(exception)
+            } catch (exception: HttpException) {
+                return MediatorResult.Error(exception)
+            }
+        }
+        return MediatorResult.Success(endOfPaginationReached = false)
     }
 }

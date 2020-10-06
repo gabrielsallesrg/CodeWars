@@ -1,5 +1,6 @@
 package com.gsrg.codewars.domain.api
 
+import com.gsrg.codewars.domain.model.AuthoredChallengesResponse
 import com.gsrg.codewars.domain.model.ChallengeDetailsResponse
 import com.gsrg.codewars.domain.model.CompletedChallengesResponse
 import com.gsrg.codewars.domain.model.PlayerResponse
@@ -29,6 +30,14 @@ interface CodeWarsApiService {
         @Path("username") username: String,
         @Query("page") page: Int
     ): CompletedChallengesResponse
+
+    /**
+     * Request authored challenges by user
+     */
+    @GET("users/{username}/code-challenges/authored")
+    suspend fun requestAuthoredChallenges(
+        @Path("username") username: String
+    ): AuthoredChallengesResponse
 
     /**
      * Request challenge details by challengeId

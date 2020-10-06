@@ -22,7 +22,7 @@ class CompletedChallengesRepository
     override fun getCompletedChallengesList(username: String): Flow<PagingData<ChallengeCompleted>> {
         Timber.tag(TAG()).d("username: $username")
 
-        val pagingSourceFactory = { database.challengesDao().completedByUsername(username = username) }
+        val pagingSourceFactory = { database.challengeCompletedDao().completedByUsername(username = username) }
 
         return Pager(
             config = PagingConfig(
