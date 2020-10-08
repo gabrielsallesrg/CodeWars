@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGray"
+    tools:viewBindingIgnore="true">
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="4dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/nextImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/rankTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="0dp"
+        android:text="@string/rank"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+    <TextView
+        android:id="@+id/rankValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/rankTextView"
+        app:layout_constraintEnd_toStartOf="@id/nextImageView"
+        app:layout_constraintStart_toEndOf="@+id/rankTextView"
+        app:layout_constraintTop_toTopOf="@+id/rankTextView"
+        tools:text="rank -5" />
+
+    <TextView
+        android:id="@+id/languageTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="0dp"
+        android:text="@string/language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rankTextView" />
+
+    <TextView
+        android:id="@+id/languageValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/languageTextView"
+        app:layout_constraintEnd_toStartOf="@id/nextImageView"
+        app:layout_constraintStart_toEndOf="@+id/languageTextView"
+        app:layout_constraintTop_toTopOf="@+id/languageTextView"
+        tools:text="C+++" />
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="0dp"
+        android:text="@string/points"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/languageTextView" />
+
+    <TextView
+        android:id="@+id/scoreValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/scoreTextView"
+        app:layout_constraintEnd_toStartOf="@id/nextImageView"
+        app:layout_constraintStart_toEndOf="@+id/scoreTextView"
+        app:layout_constraintTop_toTopOf="@+id/scoreTextView"
+        tools:text="999999" />
+
+    <ImageView
+        android:id="@+id/nextImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/next_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_send" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

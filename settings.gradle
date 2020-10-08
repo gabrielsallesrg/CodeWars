@@ -1,2 +1,4 @@
+include ':database'
+include ':domain'
 include ':app'
 rootProject.name = "CodeWars"
