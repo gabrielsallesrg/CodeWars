@@ -16,7 +16,6 @@ import com.gsrg.codewars.databinding.FragmentCompletedChallengesBinding
 import com.gsrg.codewars.ui.PlayerDataViewModel
 import com.gsrg.codewars.ui.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
@@ -26,7 +25,6 @@ class CompletedChallengesFragment : BaseFragment() {
     private lateinit var binding: FragmentCompletedChallengesBinding
     private val completedViewModel: CompletedChallengesViewModel by viewModels()
     private val playerDataViewModel: PlayerDataViewModel by activityViewModels()
-    private var searchJob: Job? = null
 
     private val adapter = CompletedChallengesAdapter(fun(challenge: ChallengeCompleted) {
         val action = CompletedChallengesFragmentDirections.actionCompletedChallengesFragmentToChallengeDetailsFragment(challengeId = challenge.challengeId)
@@ -49,7 +47,7 @@ class CompletedChallengesFragment : BaseFragment() {
     }
 
     private fun setObservables() {
-        completedViewModel.resultListLiveData.observe(viewLifecycleOwner, {
+        completedViewModel.challengeListLiveData.observe(viewLifecycleOwner, {
             viewLifecycleOwner.lifecycleScope.launch {
                 adapter.submitData(it)
             }

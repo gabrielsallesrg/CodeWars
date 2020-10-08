@@ -22,8 +22,8 @@ class CompletedChallengesViewModel
 ) : ViewModel() {
 
     private var disposables = CompositeDisposable()
-    private var challengeListResult: Observable<PagingData<ChallengeCompleted>>? = null
-    val resultListLiveData = MutableLiveData<PagingData<ChallengeCompleted>>()
+    private var challengeListObservable: Observable<PagingData<ChallengeCompleted>>? = null
+    val challengeListLiveData = MutableLiveData<PagingData<ChallengeCompleted>>()
 
     override fun onCleared() {
         super.onCleared()
@@ -31,19 +31,19 @@ class CompletedChallengesViewModel
     }
 
     fun requestCompletedChallengeListResult(username: String) {
-        if (challengeListResult == null) {
+        if (challengeListObservable == null) {
 
-            challengeListResult = repository.getCompletedChallengesList(username = username, scope = viewModelScope)
+            challengeListObservable = repository.getCompletedChallengesList(username = username, scope = viewModelScope)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
-            challengeListResult!!.subscribe(object : Observer<PagingData<ChallengeCompleted>> {
+            challengeListObservable!!.subscribe(object : Observer<PagingData<ChallengeCompleted>> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
                 }
 
                 override fun onNext(t: PagingData<ChallengeCompleted>) {
-                    resultListLiveData.value = t
+                    challengeListLiveData.value = t
                 }
 
                 override fun onError(e: Throwable) {
@@ -51,7 +51,7 @@ class CompletedChallengesViewModel
                 }
 
                 override fun onComplete() {
-                    Timber.tag(TAG()).d("challengeListResult: onComplete")
+                    Timber.tag(TAG()).d("challengeListObservable: onComplete")
                 }
             })
         }
