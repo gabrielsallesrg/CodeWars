@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="12dp"
-        android:text="@string/last_5_searches"
+        android:text="@string/last_5_results"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/simpleSeparator"
         app:layout_constraintEnd_toEndOf="parent"
