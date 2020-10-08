@@ -1,35 +1,35 @@
-package com.gsrg.codewars.domain.data.completed
+package com.gsrg.codewars.domain.authored
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.gsrg.codewars.database.CodeWarsDatabase
-import com.gsrg.codewars.database.challenges.ChallengeCompleted
+import com.gsrg.codewars.database.challenges.AuthoredChallenge
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.utils.TAG
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 import javax.inject.Inject
 
-class CompletedChallengesRepository
+class AuthoredChallengesRepository
 @Inject constructor(
     private val apiService: CodeWarsApiService,
     private val database: CodeWarsDatabase
-) : ICompletedChallengesRepository {
+) : IAuthoredChallengesRepository {
 
     @ExperimentalPagingApi
-    override fun getCompletedChallengesList(username: String): Flow<PagingData<ChallengeCompleted>> {
+    override fun getAuthoredChallengeList(username: String): Flow<PagingData<AuthoredChallenge>> {
         Timber.tag(TAG()).d("username: $username")
 
-        val pagingSourceFactory = { database.challengeCompletedDao().completedByUsername(username = username) }
+        val pagingSourceFactory = { database.authoredChallengeDao().authoredByUsername(username = username) }
 
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
+                pageSize = PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            remoteMediator = CompletedChallengesMediator(
+            remoteMediator = AuthoredChallengesMediator(
                 username = username,
                 apiService = apiService,
                 database = database
@@ -39,6 +39,6 @@ class CompletedChallengesRepository
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 200
+        private const val PAGE_SIZE = 50
     }
 }

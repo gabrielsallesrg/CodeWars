@@ -11,15 +11,18 @@ import com.gsrg.codewars.database.players.PlayersDao
 @Database(
     entities = [
         Player::class, ChallengeCompleted::class,
-        CompletedRemoteKeys::class, ChallengeDetails::class],
+        CompletedRemoteKeys::class, ChallengeDetails::class,
+        AuthoredChallenge::class],
     version = 1,
     exportSchema = false
 )
 abstract class CodeWarsDatabase : RoomDatabase() {
 
     abstract fun playersDao(): PlayersDao
-    abstract fun challengesDao(): ChallengesDAO
+    abstract fun challengeCompletedDao(): ChallengeCompletedDao
     abstract fun completedRemoteKeysDao(): CompletedRemoteKeysDao
+    abstract fun authoredChallengeDao(): AuthoredChallengeDao
+    abstract fun challengeDetailsDao(): ChallengeDetailsDao
 
     companion object {
 

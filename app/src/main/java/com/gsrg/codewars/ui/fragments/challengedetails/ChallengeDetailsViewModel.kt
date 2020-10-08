@@ -55,11 +55,11 @@ class ChallengeDetailsViewModel
             creatorUsername = response.createdBy?.username,
             creatorUrl = response.createdBy?.url
         )
-        database.challengesDao().insertChallengeDetails(challengeDetails = challengeDetails)
+        database.challengeDetailsDao().insertChallengeDetails(challengeDetails = challengeDetails)
     }
 
     private suspend fun requestChallengeDetailsFromDB(username: String, challengeId: String) {
-        val challengeDetailsList: List<ChallengeDetails> = database.challengesDao().requestChallengeDetailsBy(challengeId = challengeId, playerUsername = username)
+        val challengeDetailsList: List<ChallengeDetails> = database.challengeDetailsDao().requestChallengeDetailsBy(challengeId = challengeId, playerUsername = username)
         if (challengeDetailsList.isNotEmpty()) {
             _challengeRequestLiveData.value = Event(Result.Success(data = true))
             viewLiveData.value = challengeDetailsList.first()

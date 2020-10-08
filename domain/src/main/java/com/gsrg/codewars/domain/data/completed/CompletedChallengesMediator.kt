@@ -30,7 +30,7 @@ class CompletedChallengesMediator(
             LoadType.PREPEND -> {
                 val remoteKeys = getRemoteKeyForFirstItem(username, state)
                 if (remoteKeys == null) {
-                    return MediatorResult.Success(endOfPaginationReached = false)
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 // If the previous key is null, then we can't request more data
                 val prevKey = remoteKeys.prevKey
@@ -42,7 +42,7 @@ class CompletedChallengesMediator(
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(username, state)
                 if (remoteKeys?.nextKey == null) {
-                    return MediatorResult.Success(endOfPaginationReached = false)
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 remoteKeys.nextKey!!
             }
@@ -62,7 +62,7 @@ class CompletedChallengesMediator(
             val endOfPaginationReached = challengeList.isEmpty()
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    database.challengesDao().clearCompletedByUsername(username)
+                    database.challengeCompletedDao().clearCompletedByUsername(username)
                     database.completedRemoteKeysDao().clearRemoteKeysByUsername(username)
                 }
                 val prevKey = if (page == CHALLENGES_STARTING_PAGE) null else page - 1
@@ -76,10 +76,10 @@ class CompletedChallengesMediator(
                     )
                 }
                 database.completedRemoteKeysDao().insertAll(keys)
-                database.challengesDao().insertAllCompleted(challengeList)
+                database.challengeCompletedDao().insertAllCompleted(challengeList)
 
-                database.challengesDao().keepCompletedChallengesFromLast5Players()
-                database.challengesDao().keepChallengeDetailsFromLast5Players()
+                database.challengeCompletedDao().keepCompletedChallengesFromLast5Players()
+                database.challengeDetailsDao().keepChallengeDetailsFromLast5Players()
                 database.completedRemoteKeysDao().keepRemoteKeysFromLast5Players()
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
