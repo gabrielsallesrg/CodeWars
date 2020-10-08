@@ -26,13 +26,22 @@ class SearchViewModel
     val playerViewLiveData = MutableLiveData<PlayerResponse>()
     val resultsVisibilityLiveData = MutableLiveData<Int>()
     val last5playersLiveData = MutableLiveData<List<Player>>()
+    private var sortByRank: Boolean = false
 
     init {
         resultsVisibilityLiveData.value = View.GONE
     }
 
     fun saveSearchedName() {
-        val player = playerViewLiveData.value?.let { Player(playerUserName = it.username, date = System.currentTimeMillis()) }
+        val player = playerViewLiveData.value?.let {
+            Player(
+                playerUserName = it.username,
+                date = System.currentTimeMillis(),
+                rank = it.overallRank(),
+                bestLanguage = it.bestLanguage(),
+                bestLanguageScore = it.pointsForBestLanguage()
+            )
+        }
         if (player != null) {
             viewModelScope.launch {
                 database.playersDao().insert(player)
@@ -45,8 +54,23 @@ class SearchViewModel
         viewModelScope.launch {
             val listOfPlayers: List<Player>? = database.playersDao().selectAllPlayers()
             if (listOfPlayers != null) {
-                last5playersLiveData.value = listOfPlayers
+                last5playersLiveData.value = sort(listOfPlayers)
             }
+        }
+    }
+
+    fun sortLast5Players() {
+        sortByRank = !sortByRank
+        last5playersLiveData.value?.let {
+            last5playersLiveData.value = sort(it)
+        }
+    }
+
+    private fun sort(list: List<Player>): List<Player> {
+        return if (sortByRank) {
+            list.sortedByDescending { it.rank }
+        } else {
+            list.sortedByDescending { it.date }
         }
     }
 
@@ -68,5 +92,9 @@ class SearchViewModel
                     }
                 }
         }
+    }
+
+    fun hideSearchResult() {
+        resultsVisibilityLiveData.value = View.GONE
     }
 }

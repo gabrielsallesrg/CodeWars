@@ -7,5 +7,8 @@ import androidx.room.PrimaryKey
 data class Player(
     @PrimaryKey
     val playerUserName: String,
-    val date: Long
+    val date: Long,
+    val rank: Int,
+    val bestLanguage: String,
+    val bestLanguageScore: Int
 )

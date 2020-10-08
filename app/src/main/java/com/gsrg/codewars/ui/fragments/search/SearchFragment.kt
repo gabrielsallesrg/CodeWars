@@ -59,6 +59,9 @@ class SearchFragment : BaseFragment() {
             searchViewModel.saveSearchedName()
             navigateToNextScreen()
         }
+        binding.sortButton.setOnClickListener {
+            searchViewModel.sortLast5Players()
+        }
         binding.searchTextInputLayout.setEndIconOnClickListener {
             binding.searchTextInputEditText.text.toString().let {
                 if (it.isNotBlank()) {
@@ -96,5 +99,6 @@ class SearchFragment : BaseFragment() {
 
     private fun navigateToNextScreen() {
         findNavController().navigate(R.id.action_searchFragment_to_challengesFragment)
+        searchViewModel.hideSearchResult()
     }
 }

@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
                 app:endIconMode="custom"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/sortButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -37,32 +37,25 @@
                     android:hint="@string/player_name" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/last5RecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:elevation="24dp"
-                android:visibility="gone"
+            <Button
+                android:id="@+id/sortButton"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="@string/sort"
+                app:layout_constraintBottom_toBottomOf="@id/searchTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
-                tools:itemCount="5"
-                tools:listitem="@layout/search_history_item"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toTopOf="@id/searchTextInputLayout" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/playerDetailsCardView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="48dp"
                 android:visibility="@{searchViewModel.resultsVisibilityLiveData}"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/last5RecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/searchTextInputLayout"
                 app:layout_constraintVertical_bias="0.0"
                 tools:visibility="visible">
 
@@ -206,6 +199,20 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/last5RecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="24dp"
+                android:visibility="gone"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerDetailsCardView"
+                tools:itemCount="5"
+                tools:listitem="@layout/search_history_item"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
