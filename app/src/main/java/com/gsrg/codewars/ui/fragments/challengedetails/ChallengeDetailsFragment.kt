@@ -55,7 +55,7 @@ class ChallengeDetailsFragment : BaseFragment() {
 
     private fun search(username: String, challengeId: String) {
         searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
+        searchJob = viewLifecycleOwner.lifecycleScope.launch {
             challengeDetailsViewModel.requestChallengeDetails(username = username, challengeId = challengeId)
         }
     }

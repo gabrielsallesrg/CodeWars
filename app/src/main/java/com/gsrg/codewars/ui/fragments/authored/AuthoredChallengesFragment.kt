@@ -70,7 +70,7 @@ class AuthoredChallengesFragment : BaseFragment() {
                 ?: loadState.refresh as? LoadState.Error
 
             if (errorState != null) {
-                val message = if (errorState.error is UnknownHostException) "Something went wrong. Check your internet connection." else "%{errorState.error}"
+                val message = if (errorState.error is UnknownHostException) "Something went wrong. Check your internet connection." else "${errorState.error}"
                 showMessage(binding.root, message)
             }
 
@@ -79,7 +79,7 @@ class AuthoredChallengesFragment : BaseFragment() {
 
     private fun search(username: String) {
         searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
+        searchJob = viewLifecycleOwner.lifecycleScope.launch {
             authoredChallengesViewModel.requestAuthoredChallenges(username = username).collectLatest {
                 adapter.submitData(it)
             }
