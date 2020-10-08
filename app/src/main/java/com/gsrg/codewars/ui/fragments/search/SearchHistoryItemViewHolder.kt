@@ -10,10 +10,16 @@ import com.gsrg.codewars.database.players.Player
 
 class SearchHistoryItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var nameTextView: TextView = view.findViewById(R.id.nameTextView)
+    private var rankTextView: TextView = view.findViewById(R.id.rankValueTextView)
+    private var languageTextView: TextView = view.findViewById(R.id.languageValueTextView)
+    private var scoreTextView: TextView = view.findViewById(R.id.scoreValueTextView)
 
     fun bind(player: Player?) {
-        if (player != null) {
-            nameTextView.text = player.playerUserName
+        player?.let {
+            nameTextView.text = it.playerUserName
+            rankTextView.text = it.rank.toString()
+            languageTextView.text = it.bestLanguage
+            scoreTextView.text = it.bestLanguageScore.toString()
         }
     }
 
