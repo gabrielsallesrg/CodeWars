@@ -17,14 +17,6 @@ class AuthoredChallengesMediator(
     private val database: CodeWarsDatabase
 ) : RemoteMediator<Int, AuthoredChallenge>() {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, AuthoredChallenge>): MediatorResult {
-        when (loadType) {
-            LoadType.REFRESH -> {
-            } //TODO
-            LoadType.PREPEND -> {
-            } //TODO
-            LoadType.APPEND -> {
-            } //TODO
-        }
         if (loadType == LoadType.REFRESH) {
             try {
                 val apiResponse = apiService.requestAuthoredChallenges(username)

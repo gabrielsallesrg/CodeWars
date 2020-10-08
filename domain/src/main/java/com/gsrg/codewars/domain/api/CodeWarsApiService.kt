@@ -4,7 +4,7 @@ import com.gsrg.codewars.domain.model.AuthoredChallengesResponse
 import com.gsrg.codewars.domain.model.ChallengeDetailsResponse
 import com.gsrg.codewars.domain.model.CompletedChallengesResponse
 import com.gsrg.codewars.domain.model.PlayerResponse
-import retrofit2.Response
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -18,9 +18,9 @@ interface CodeWarsApiService {
      * Find user whose username or id matches the query
      */
     @GET("users/{id_or_username}")
-    suspend fun searchPlayer(
+    fun searchPlayer(
         @Path("id_or_username") idOrUsername: String
-    ): Response<PlayerResponse>
+    ): Observable<PlayerResponse>
 
     /**
      * Request completed challenges for user
@@ -43,7 +43,7 @@ interface CodeWarsApiService {
      * Request challenge details by challengeId
      */
     @GET("code-challenges/{challengeId}")
-    suspend fun requestChallengeDetails(
+    fun requestChallengeDetails(
         @Path("challengeId") challengeId: String
-    ): Response<ChallengeDetailsResponse>
+    ): Observable<ChallengeDetailsResponse>
 }

@@ -16,8 +16,6 @@ import com.gsrg.codewars.databinding.FragmentCompletedChallengesBinding
 import com.gsrg.codewars.ui.PlayerDataViewModel
 import com.gsrg.codewars.ui.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
@@ -27,7 +25,6 @@ class CompletedChallengesFragment : BaseFragment() {
     private lateinit var binding: FragmentCompletedChallengesBinding
     private val completedViewModel: CompletedChallengesViewModel by viewModels()
     private val playerDataViewModel: PlayerDataViewModel by activityViewModels()
-    private var searchJob: Job? = null
 
     private val adapter = CompletedChallengesAdapter(fun(challenge: ChallengeCompleted) {
         val action = CompletedChallengesFragmentDirections.actionCompletedChallengesFragmentToChallengeDetailsFragment(challengeId = challenge.challengeId)
@@ -40,8 +37,21 @@ class CompletedChallengesFragment : BaseFragment() {
     ): View? {
         binding = FragmentCompletedChallengesBinding.inflate(inflater, container, false)
         setRecyclerView()
-        search(playerDataViewModel.playerUsername)
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setObservables()
+        completedViewModel.requestCompletedChallengeListResult(playerDataViewModel.playerUsername)
+    }
+
+    private fun setObservables() {
+        completedViewModel.challengeListLiveData.observe(viewLifecycleOwner, {
+            viewLifecycleOwner.lifecycleScope.launch {
+                adapter.submitData(it)
+            }
+        })
     }
 
     private fun setRecyclerView() {
@@ -66,17 +76,8 @@ class CompletedChallengesFragment : BaseFragment() {
                 ?: loadState.refresh as? LoadState.Error
 
             if (errorState != null) {
-                val message = if (errorState.error is UnknownHostException) "Something went wrong. Check your internet connection." else "%{errorState.error}"
+                val message = if (errorState.error is UnknownHostException) "Something went wrong. Check your internet connection." else "${errorState.error}"
                 showMessage(binding.root, message)
-            }
-        }
-    }
-
-    private fun search(username: String) {
-        searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
-            completedViewModel.requestCompletedChallengeListResult(username = username).collectLatest {
-                adapter.submitData(it)
             }
         }
     }
