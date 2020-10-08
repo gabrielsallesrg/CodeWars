@@ -5,7 +5,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 
-class CompletedChallengesAdapter(private val itemClickAction: (ChallengeCompleted) -> Unit) : PagingDataAdapter<ChallengeCompleted, ChallengeViewHolder>(CHALLENGE_COMPARATOR) {
+class CompletedChallengesAdapter(
+    private val itemClickAction: (ChallengeCompleted) -> Unit
+) : PagingDataAdapter<ChallengeCompleted, ChallengeViewHolder>(CHALLENGE_COMPARATOR) {
 
     override fun onBindViewHolder(holder: ChallengeViewHolder, position: Int) {
         getItem(position)?.let { challenge: ChallengeCompleted ->

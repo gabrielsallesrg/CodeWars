@@ -39,6 +39,6 @@ class CompletedChallengesRepository
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 50
+        private const val NETWORK_PAGE_SIZE = 200
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.databinding.FragmentCompletedChallengesBinding
 import com.gsrg.codewars.ui.PlayerDataViewModel
@@ -21,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 @AndroidEntryPoint
 class CompletedChallengesFragment : BaseFragment() {
@@ -47,14 +46,12 @@ class CompletedChallengesFragment : BaseFragment() {
 
     private fun setRecyclerView() {
         binding.challengesRecyclerView.let {
-            it.layoutManager = LinearLayoutManager(requireContext())
             it.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
             it.adapter = adapter
         }
         adapter.addLoadStateListener { loadState: CombinedLoadStates ->
             when (loadState.source.refresh) {
                 is LoadState.NotLoading -> {
-                    binding.challengesRecyclerView.isVisible = true
                     hideLoading()
                 }
                 is LoadState.Loading -> showLoading()
@@ -66,9 +63,11 @@ class CompletedChallengesFragment : BaseFragment() {
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
                 ?: loadState.prepend as? LoadState.Error
+                ?: loadState.refresh as? LoadState.Error
 
             if (errorState != null) {
-                showMessage(binding.root, "${errorState.error}")
+                val message = if (errorState.error is UnknownHostException) "Something went wrong. Check your internet connection." else "%{errorState.error}"
+                showMessage(binding.root, message)
             }
         }
     }

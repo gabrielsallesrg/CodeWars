@@ -30,7 +30,7 @@ class CompletedChallengesMediator(
             LoadType.PREPEND -> {
                 val remoteKeys = getRemoteKeyForFirstItem(username, state)
                 if (remoteKeys == null) {
-                    return MediatorResult.Success(endOfPaginationReached = false)
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 // If the previous key is null, then we can't request more data
                 val prevKey = remoteKeys.prevKey
@@ -42,7 +42,7 @@ class CompletedChallengesMediator(
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(username, state)
                 if (remoteKeys?.nextKey == null) {
-                    return MediatorResult.Success(endOfPaginationReached = false)
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 remoteKeys.nextKey!!
             }
