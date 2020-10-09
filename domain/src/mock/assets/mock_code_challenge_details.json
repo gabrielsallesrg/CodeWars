@@ -1,0 +1,72 @@
+{
+  "id": "54d7660d2daf68c619000d95",
+  "name": "Common Denominators",
+  "slug": "common-denominators",
+  "category": "reference",
+  "publishedAt": "2015-02-08T13:52:32.440Z",
+  "approvedAt": "2015-04-11T00:16:38.620Z",
+  "languages": [
+    "java",
+    "ruby",
+    "csharp",
+    "python",
+    "clojure",
+    "haskell",
+    "javascript",
+    "coffeescript",
+    "cpp",
+    "php",
+    "crystal",
+    "c",
+    "typescript",
+    "rust",
+    "swift",
+    "r",
+    "shell",
+    "ocaml",
+    "elixir",
+    "fsharp",
+    "julia",
+    "scala",
+    "powershell",
+    "go",
+    "nim",
+    "purescript",
+    "racket",
+    "reason",
+    "kotlin",
+    "groovy"
+  ],
+  "url": "https://www.codewars.com/kata/54d7660d2daf68c619000d95",
+  "rank": {
+    "id": -5,
+    "name": "5 kyu",
+    "color": "yellow"
+  },
+  "createdAt": "2015-02-08T13:35:09.726Z",
+  "createdBy": {
+    "username": "g964",
+    "url": "https://www.codewars.com/users/g964"
+  },
+  "approvedBy": {
+    "username": "jhoffner",
+    "url": "https://www.codewars.com/users/jhoffner"
+  },
+  "description": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur adipisci[ng]velit, sed quia non-numquam [do] eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipitlaboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui inea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non-provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non-recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat…",
+  "totalAttempts": 93246,
+  "totalCompleted": 8336,
+  "totalStars": 837,
+  "voteScore": 842,
+  "tags": [
+    "Fundamentals",
+    "Algorithms",
+    "Logic",
+    "Mathematics",
+    "Numbers"
+  ],
+  "contributorsWanted": true,
+  "unresolved": {
+    "issues": 1,
+    "suggestions": 5
+  }
+}

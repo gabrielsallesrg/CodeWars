@@ -32,8 +32,20 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "Boolean", "MOCK_RESPONSE", "false"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "Boolean", "MOCK_RESPONSE", "false"
+            minifyEnabled false
+            debuggable = true
+        }
+        mock {
+            buildConfigField "Boolean", "MOCK_RESPONSE", "true"
+            minifyEnabled false
+            debuggable = true
+            signingConfig signingConfigs.debug
         }
     }
 }

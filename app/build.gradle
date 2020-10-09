@@ -50,6 +50,7 @@ android {
             buildConfigField "Boolean", "MOCK_RESPONSE", "true"
             minifyEnabled false
             debuggable = true
+            signingConfig signingConfigs.debug
         }
     }
 }

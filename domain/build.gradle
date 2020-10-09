@@ -47,6 +47,7 @@ android {
             buildConfigField "String", "CODE_WARS_BASE_URL", "\"https://www.codewars.com/api/v1/\""
             minifyEnabled false
             debuggable = true
+            signingConfig signingConfigs.debug
         }
     }
 }

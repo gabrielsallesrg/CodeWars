@@ -67,7 +67,7 @@ class ChallengeDetailsViewModel
 
                 override fun onNext(t: ChallengeDetails) {
                     viewModelScope.launch {
-                        storeRepositoryResponseInDB(username = username, challengeDetails = t)
+                        storeRepositoryResponseInDB(challengeDetails = t)
                         requestChallengeDetailsFromDB(username = username, challengeId = challengeId)
                     }
                 }
@@ -84,7 +84,7 @@ class ChallengeDetailsViewModel
         }
     }
 
-    private suspend fun storeRepositoryResponseInDB(username: String, challengeDetails: ChallengeDetails) {
+    private suspend fun storeRepositoryResponseInDB(challengeDetails: ChallengeDetails) {
         database.challengeDetailsDao().insertChallengeDetails(challengeDetails = challengeDetails)
     }
 
