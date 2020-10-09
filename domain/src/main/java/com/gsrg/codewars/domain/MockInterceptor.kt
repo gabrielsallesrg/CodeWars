@@ -13,7 +13,10 @@ class MockInterceptor(val context: Context) : Interceptor {
         if (BuildConfig.MOCK_RESPONSE) {
             val uri = chain.request().url.toUri().toString()
             val responseString = when {
-                uri.contains("TODO") -> loadJsonFromAssets("TODO_mock_response.json")
+                uri.contains("completed") -> loadJsonFromAssets("mock_challenge_completed_list.json")
+                uri.contains("authored") -> loadJsonFromAssets("mock_authored_challenge_list.json")
+                uri.contains("code-challenges") -> loadJsonFromAssets("mock_code_challenge_details.json")
+                uri.contains("users") -> loadJsonFromAssets("mock_user.json")
                 else -> "{}"
             }
 

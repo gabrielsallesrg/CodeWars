@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.gsrg.codewars.database.challenges.*
+import com.gsrg.codewars.database.challenges.AuthoredChallenge
+import com.gsrg.codewars.database.challenges.ChallengeCompleted
+import com.gsrg.codewars.database.challenges.ChallengeDetails
+import com.gsrg.codewars.database.challenges.CompletedRemoteKeys
 import com.gsrg.codewars.database.players.Player
-import com.gsrg.codewars.database.players.PlayersDao
 
 @Database(
     entities = [
@@ -16,13 +18,7 @@ import com.gsrg.codewars.database.players.PlayersDao
     version = 1,
     exportSchema = false
 )
-abstract class CodeWarsDatabase : RoomDatabase() {
-
-    abstract fun playersDao(): PlayersDao
-    abstract fun challengeCompletedDao(): ChallengeCompletedDao
-    abstract fun completedRemoteKeysDao(): CompletedRemoteKeysDao
-    abstract fun authoredChallengeDao(): AuthoredChallengeDao
-    abstract fun challengeDetailsDao(): ChallengeDetailsDao
+abstract class CodeWarsDatabase : RoomDatabase(), ICodeWarsDatabase {
 
     companion object {
 

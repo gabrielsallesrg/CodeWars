@@ -6,12 +6,12 @@ import androidx.room.Entity
 data class ChallengeDetails(
     val playerUsername: String,
     val challengeId: String,
-    val name: String?,
-    val slug: String?,
-    val category: String?,
-    val languages: String?,
-    val url: String?,
-    val description: String?,
-    val creatorUsername: String?,
-    val creatorUrl: String?
+    val name: String? = null,
+    val slug: String? = null,
+    val category: String? = null,
+    val languages: String? = null,
+    val url: String? = null,
+    val description: String? = null,
+    val creatorUsername: String? = null,
+    val creatorUrl: String? = null
 )

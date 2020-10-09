@@ -1,11 +1,12 @@
 package com.gsrg.codewars.ui.fragments.search
 
 import android.view.View
+import androidx.annotation.VisibleForTesting
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.players.Player
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.data.player.IPlayerRepository
@@ -24,7 +25,7 @@ import timber.log.Timber
 class SearchViewModel
 @ViewModelInject constructor(
     private val playerRepository: IPlayerRepository,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : ViewModel() {
 
     private var disposables = CompositeDisposable()
@@ -35,7 +36,9 @@ class SearchViewModel
     val playerViewLiveData = MutableLiveData<PlayerResponse>()
     val resultsVisibilityLiveData = MutableLiveData<Int>()
     val last5playersLiveData = MutableLiveData<List<Player>>()
-    private var sortByRank: Boolean = false
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var sortByRank: Boolean = false
 
     init {
         resultsVisibilityLiveData.value = View.GONE
@@ -80,7 +83,8 @@ class SearchViewModel
         }
     }
 
-    private fun sort(list: List<Player>): List<Player> {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun sort(list: List<Player>): List<Player> {
         return if (sortByRank) {
             list.sortedByDescending { it.rank }
         } else {
