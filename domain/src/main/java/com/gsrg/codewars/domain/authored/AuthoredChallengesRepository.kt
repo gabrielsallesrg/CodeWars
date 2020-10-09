@@ -4,22 +4,25 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.gsrg.codewars.database.CodeWarsDatabase
+import androidx.paging.rxjava2.cachedIn
+import androidx.paging.rxjava2.observable
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.AuthoredChallenge
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.utils.TAG
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 import javax.inject.Inject
 
 class AuthoredChallengesRepository
 @Inject constructor(
     private val apiService: CodeWarsApiService,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : IAuthoredChallengesRepository {
 
     @ExperimentalPagingApi
-    override fun getAuthoredChallengeList(username: String): Flow<PagingData<AuthoredChallenge>> {
+    override fun getAuthoredChallengeList(username: String, scope: CoroutineScope): Observable<PagingData<AuthoredChallenge>> {
         Timber.tag(TAG()).d("username: $username")
 
         val pagingSourceFactory = { database.authoredChallengeDao().authoredByUsername(username = username) }
@@ -35,7 +38,8 @@ class AuthoredChallengesRepository
                 database = database
             ),
             pagingSourceFactory = pagingSourceFactory
-        ).flow
+        ).observable
+            .cachedIn(scope)
     }
 
     companion object {

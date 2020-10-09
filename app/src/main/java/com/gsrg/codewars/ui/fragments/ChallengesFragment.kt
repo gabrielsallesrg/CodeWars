@@ -1,18 +1,13 @@
 package com.gsrg.codewars.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.gsrg.codewars.R
 import com.gsrg.codewars.databinding.FragmentChallengesBinding
 import com.gsrg.codewars.ui.MainActivity
@@ -64,11 +59,7 @@ class ChallengesFragment : Fragment() {
         currentNavController = controller
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> currentNavController?.value?.navigateUp() ?: false
-            else -> super.onOptionsItemSelected(item)
-        }
+    fun navigateUp(): Boolean {
+        return currentNavController?.value?.navigateUp() ?: false
     }
-
 }

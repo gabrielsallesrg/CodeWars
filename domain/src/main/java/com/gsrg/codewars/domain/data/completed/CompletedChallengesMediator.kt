@@ -6,6 +6,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.database.challenges.CompletedRemoteKeys
 import com.gsrg.codewars.domain.api.CodeWarsApiService
@@ -18,7 +19,7 @@ private const val CHALLENGES_STARTING_PAGE = 0
 class CompletedChallengesMediator(
     private val username: String,
     private val apiService: CodeWarsApiService,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : RemoteMediator<Int, ChallengeCompleted>() {
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, ChallengeCompleted>): MediatorResult {
@@ -60,7 +61,7 @@ class CompletedChallengesMediator(
                 )
             }
             val endOfPaginationReached = challengeList.isEmpty()
-            database.withTransaction {
+            (database as CodeWarsDatabase).withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     database.challengeCompletedDao().clearCompletedByUsername(username)
                     database.completedRemoteKeysDao().clearRemoteKeysByUsername(username)

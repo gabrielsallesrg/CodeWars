@@ -1,0 +1,298 @@
+{
+  "username": "MockedUser",
+  "name": "",
+  "honor": 311752,
+  "clan": "None",
+  "leaderboardPosition": 1,
+  "skills": [],
+  "ranks": {
+    "overall": {
+      "rank": -1,
+      "name": "1 kyu",
+      "color": "purple",
+      "score": 26907
+    },
+    "languages": {
+      "haskell": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 3450
+      },
+      "elixir": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 863
+      },
+      "dart": {
+        "rank": -5,
+        "name": "5 kyu",
+        "color": "yellow",
+        "score": 322
+      },
+      "typescript": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2347
+      },
+      "fsharp": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1591
+      },
+      "ocaml": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1613
+      },
+      "ruby": {
+        "rank": -2,
+        "name": "2 kyu",
+        "color": "purple",
+        "score": 7171
+      },
+      "java": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 4190
+      },
+      "clojure": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 1900
+      },
+      "cpp": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2397
+      },
+      "rust": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2091
+      },
+      "javascript": {
+        "rank": -1,
+        "name": "1 kyu",
+        "color": "purple",
+        "score": 15197
+      },
+      "coffeescript": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 4619
+      },
+      "csharp": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 3174
+      },
+      "c": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1345
+      },
+      "python": {
+        "rank": -2,
+        "name": "2 kyu",
+        "color": "purple",
+        "score": 10607
+      },
+      "php": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2144
+      },
+      "crystal": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1236
+      },
+      "go": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 1769
+      },
+      "swift": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 825
+      },
+      "shell": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1731
+      },
+      "lua": {
+        "rank": -6,
+        "name": "6 kyu",
+        "color": "yellow",
+        "score": 201
+      },
+      "sql": {
+        "rank": -6,
+        "name": "6 kyu",
+        "color": "yellow",
+        "score": 187
+      },
+      "r": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1684
+      },
+      "nim": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2359
+      },
+      "objc": {
+        "rank": -6,
+        "name": "6 kyu",
+        "color": "yellow",
+        "score": 193
+      },
+      "kotlin": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 1775
+      },
+      "groovy": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 832
+      },
+      "scala": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2010
+      },
+      "solidity": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 5
+      },
+      "erlang": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 8
+      },
+      "fortran": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 990
+      },
+      "julia": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 1800
+      },
+      "powershell": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1251
+      },
+      "reason": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 1256
+      },
+      "racket": {
+        "rank": -3,
+        "name": "3 kyu",
+        "color": "blue",
+        "score": 2358
+      },
+      "vb": {
+        "rank": -5,
+        "name": "5 kyu",
+        "color": "yellow",
+        "score": 482
+      },
+      "forth": {
+        "rank": -5,
+        "name": "5 kyu",
+        "color": "yellow",
+        "score": 567
+      },
+      "factor": {
+        "rank": -6,
+        "name": "6 kyu",
+        "color": "yellow",
+        "score": 115
+      },
+      "prolog": {
+        "rank": -4,
+        "name": "4 kyu",
+        "color": "blue",
+        "score": 728
+      },
+      "cobol": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 2
+      },
+      "coq": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 4
+      },
+      "haxe": {
+        "rank": -5,
+        "name": "5 kyu",
+        "color": "yellow",
+        "score": 635
+      },
+      "elm": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 6
+      },
+      "cfml": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 6
+      },
+      "purescript": {
+        "rank": -8,
+        "name": "8 kyu",
+        "color": "white",
+        "score": 6
+      }
+    }
+  },
+  "codeChallenges": {
+    "totalAuthored": 146,
+    "totalCompleted": 2192
+  }
+}

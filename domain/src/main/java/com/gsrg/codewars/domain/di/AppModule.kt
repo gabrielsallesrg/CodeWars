@@ -2,6 +2,7 @@ package com.gsrg.codewars.domain.di
 
 import android.content.Context
 import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.domain.BuildConfig
 import com.gsrg.codewars.domain.MockInterceptor
 import com.gsrg.codewars.domain.api.CodeWarsApiService
@@ -13,6 +14,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -44,13 +46,14 @@ object AppModule {
             .baseUrl(BuildConfig.CODE_WARS_BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(CodeWarsApiService::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideCodeWarsDatabase(@ApplicationContext applicationContext: Context): CodeWarsDatabase {
+    fun provideCodeWarsDatabase(@ApplicationContext applicationContext: Context): ICodeWarsDatabase {
         return CodeWarsDatabase.getInstance(applicationContext)
     }
 }

@@ -46,7 +46,7 @@ class PlayersDaoTest {
 
     @Test
     fun insertPlayerInDatabase() = runBlocking {
-        val player = Player("AAA", 5)
+        val player = Player("AAA", 5, 0, "", 0)
         playersDao.insert(player)
         val playersList: List<Player> = playersDao.selectAllPlayers()!!
         assertThat(playersList[0], equalTo(player))
@@ -54,52 +54,52 @@ class PlayersDaoTest {
 
     @Test
     fun insertMultiplePlayersAndKeep5() = runBlocking {
-        playersDao.insert(Player("AAA", 1))
+        playersDao.insert(Player("AAA", 1, 0, "", 0))
         playersDao.keepLast5Players()
         var playerList: List<Player> = playersDao.selectAllPlayers()!!
         Assert.assertEquals(1, playerList.size)
 
-        playersDao.insert(Player("AAB", 2))
+        playersDao.insert(Player("AAB", 2, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(2, playerList.size)
 
-        playersDao.insert(Player("AAC", 3))
+        playersDao.insert(Player("AAC", 3, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(3, playerList.size)
 
-        playersDao.insert(Player("AAD", 4))
+        playersDao.insert(Player("AAD", 4, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(4, playerList.size)
 
-        playersDao.insert(Player("AAE", 5))
+        playersDao.insert(Player("AAE", 5, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)
 
-        playersDao.insert(Player("AAF", 6))
+        playersDao.insert(Player("AAF", 6, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)
 
-        playersDao.insert(Player("AAG", 7))
+        playersDao.insert(Player("AAG", 7, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)
 
-        playersDao.insert(Player("AAH", 8))
+        playersDao.insert(Player("AAH", 8, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)
 
-        playersDao.insert(Player("AAI", 9))
+        playersDao.insert(Player("AAI", 9, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)
 
-        playersDao.insert(Player("AAJ", 10))
+        playersDao.insert(Player("AAJ", 10, 0, "", 0))
         playersDao.keepLast5Players()
         playerList = playersDao.selectAllPlayers()!!
         Assert.assertEquals(5, playerList.size)

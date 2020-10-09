@@ -1,0 +1,103 @@
+{
+  "totalPages": 1,
+  "totalItems": 11,
+  "data": [
+    {
+      "id": "525f00ec798bc53e8e00004c",
+      "name": "Secret knock",
+      "slug": "secret-knock",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-03-28T11:33:17.000Z"
+    },
+    {
+      "id": "52223df9e8f98c7aa7000062",
+      "name": "ROT13",
+      "slug": "rot13",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-03-17T14:29:36.000Z"
+    },
+    {
+      "id": "51f9d3db4095e07f130001ee",
+      "name": "Compose functions (T Combinator)",
+      "slug": "compose-functions-t-combinator",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-03-17T11:01:53.000Z"
+    },
+    {
+      "id": "52e1476c8147a7547a000811",
+      "name": "Regex Password Validation",
+      "slug": "regex-password-validation",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-03-12T10:29:00.000Z"
+    },
+    {
+      "id": "525d8c20915a399b5600087b",
+      "name": "Word Finder",
+      "slug": "word-finder",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-12T09:11:07.000Z"
+    },
+    {
+      "id": "525f0459fb9570f9ff00005d",
+      "name": "Javascript filter - 3",
+      "slug": "javascript-filter-3",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-12T09:00:03.000Z"
+    },
+    {
+      "id": "52597aa56021e91c93000cb0",
+      "name": "Moving Zeros To The End",
+      "slug": "moving-zeros-to-the-end",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-07T21:33:43.000Z"
+    },
+    {
+      "id": "5268af3872b786f006000228",
+      "name": "Don't rely on luck.",
+      "slug": "dont-rely-on-luck",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-07T14:12:49.000Z"
+    },
+    {
+      "id": "515e271a311df0350d00000f",
+      "name": "Square(n) Sum",
+      "slug": "square-n-sum",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-07T14:00:41.000Z"
+    },
+    {
+      "id": "50654ddff44f800200000004",
+      "name": "Multiply",
+      "slug": "multiply",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-07T13:54:59.000Z"
+    },
+    {
+      "id": "50654ddff44f800200000001",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2014-02-07T13:54:44.000Z"
+    }
+  ]
+}

@@ -4,22 +4,25 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.gsrg.codewars.database.CodeWarsDatabase
+import androidx.paging.rxjava2.cachedIn
+import androidx.paging.rxjava2.observable
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.utils.TAG
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 import javax.inject.Inject
 
 class CompletedChallengesRepository
 @Inject constructor(
     private val apiService: CodeWarsApiService,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : ICompletedChallengesRepository {
 
     @ExperimentalPagingApi
-    override fun getCompletedChallengesList(username: String): Flow<PagingData<ChallengeCompleted>> {
+    override fun getCompletedChallengesList(username: String, scope: CoroutineScope): Observable<PagingData<ChallengeCompleted>> {
         Timber.tag(TAG()).d("username: $username")
 
         val pagingSourceFactory = { database.challengeCompletedDao().completedByUsername(username = username) }
@@ -35,7 +38,8 @@ class CompletedChallengesRepository
                 database = database
             ),
             pagingSourceFactory = pagingSourceFactory
-        ).flow
+        ).observable
+            .cachedIn(scope)
     }
 
     companion object {

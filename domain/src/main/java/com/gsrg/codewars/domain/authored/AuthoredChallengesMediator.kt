@@ -4,7 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.AuthoredChallenge
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import retrofit2.HttpException
@@ -14,17 +14,9 @@ import java.io.IOException
 class AuthoredChallengesMediator(
     private val username: String,
     private val apiService: CodeWarsApiService,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : RemoteMediator<Int, AuthoredChallenge>() {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, AuthoredChallenge>): MediatorResult {
-        when (loadType) {
-            LoadType.REFRESH -> {
-            } //TODO
-            LoadType.PREPEND -> {
-            } //TODO
-            LoadType.APPEND -> {
-            } //TODO
-        }
         if (loadType == LoadType.REFRESH) {
             try {
                 val apiResponse = apiService.requestAuthoredChallenges(username)
