@@ -2,6 +2,7 @@ package com.gsrg.codewars.domain.di
 
 import android.content.Context
 import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.domain.BuildConfig
 import com.gsrg.codewars.domain.MockInterceptor
 import com.gsrg.codewars.domain.api.CodeWarsApiService
@@ -52,7 +53,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCodeWarsDatabase(@ApplicationContext applicationContext: Context): CodeWarsDatabase {
+    fun provideCodeWarsDatabase(@ApplicationContext applicationContext: Context): ICodeWarsDatabase {
         return CodeWarsDatabase.getInstance(applicationContext)
     }
 }

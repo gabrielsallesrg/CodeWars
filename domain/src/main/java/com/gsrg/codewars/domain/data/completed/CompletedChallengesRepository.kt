@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.cachedIn
 import androidx.paging.rxjava2.observable
-import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.ChallengeCompleted
 import com.gsrg.codewars.domain.api.CodeWarsApiService
 import com.gsrg.codewars.domain.utils.TAG
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class CompletedChallengesRepository
 @Inject constructor(
     private val apiService: CodeWarsApiService,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : ICompletedChallengesRepository {
 
     @ExperimentalPagingApi

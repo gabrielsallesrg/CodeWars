@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gsrg.codewars.database.CodeWarsDatabase
+import com.gsrg.codewars.database.ICodeWarsDatabase
 import com.gsrg.codewars.database.challenges.ChallengeDetails
 import com.gsrg.codewars.domain.api.Result
 import com.gsrg.codewars.domain.data.challengedetails.IChallengeDetailsRepository
@@ -22,7 +22,7 @@ import timber.log.Timber
 class ChallengeDetailsViewModel
 @ViewModelInject constructor(
     private val challengeDetailsRepository: IChallengeDetailsRepository,
-    private val database: CodeWarsDatabase
+    private val database: ICodeWarsDatabase
 ) : ViewModel() {
 
     private var disposables = CompositeDisposable()
